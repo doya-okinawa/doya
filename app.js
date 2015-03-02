@@ -1,29 +1,30 @@
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var mongoose     = require('mongoose');
+var express          = require('express');
+var path             = require('path');
+var favicon          = require('serve-favicon');
+var logger           = require('morgan');
+var cookieParser     = require('cookie-parser');
+var bodyParser       = require('body-parser');
+var mongoose         = require('mongoose');
+var connectionString = require('./config/mongodb/connectionString.json').string;
 
-var welcome      = require('./app/controllers/welcome');
-var about        = require('./app/controllers/about');
-var users        = require('./app/controllers/users');
-var communities  = require('./app/controllers/communities');
-var coffeeHouses = require('./app/controllers/coffeehouses');
-var user         = require('./app/controllers/user');
+var welcome          = require('./app/controllers/welcome');
+var about            = require('./app/controllers/about');
+var users            = require('./app/controllers/users');
+var communities      = require('./app/controllers/communities');
+var coffeeHouses     = require('./app/controllers/coffeehouses');
+var user             = require('./app/controllers/user');
 
 var app = express();
 
 var connect = function() {
     var options = { server: { socketOptions: { keepAlive: 1 } } };
-    mongoose.connect("localhost:27017/doyadb", options);
+    mongoose.connect( connectionString, options);
 };
 connect();
 
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
-mongoose.connection.on('open', function() { console.log('Successfuly Connected to MongoDB'); });
+mongoose.connection.on('open', function() { console.log('Successfuly Connected to : ' + connectionString); });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));

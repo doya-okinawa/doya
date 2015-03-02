@@ -1,6 +1,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var nodemon     = require('gulp-nodemon');
+var exec        = require('child_process').exec;
 
 gulp.task('browserSyncTask', function() {
     browserSync({
@@ -28,5 +29,14 @@ gulp.task('dev', function() {
             console.log('restarted!');
         });
 });
+
+gulp.task('mongod', function () {
+    exec('mongod --config config/mongodb/mongodb.dbpath.config', function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
+
 
 gulp.task('default', ['browserSyncTask']);
