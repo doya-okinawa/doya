@@ -13,7 +13,7 @@ gulp.task('browserSyncTask', function() {
     gulp.watch("./public/javascripts/*.js", function() {
         browserSync.reload();
     });
-    gulp.watch("./views/**/*.ejs", function() {
+    gulp.watch("./app/views/**/*.ejs", function() {
         browserSync.reload();
     });
 });

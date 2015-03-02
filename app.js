@@ -4,18 +4,29 @@ var favicon      = require('serve-favicon');
 var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
+var mongoose     = require('mongoose');
 
-var welcome      = require('./routes/welcome');
-var about        = require('./routes/about');
-var users        = require('./routes/users');
-var communities  = require('./routes/communities');
-var cafes        = require('./routes/cafes');
-var user         = require('./routes/user');
+var welcome      = require('./app/controllers/welcome');
+var about        = require('./app/controllers/about');
+var users        = require('./app/controllers/users');
+var communities  = require('./app/controllers/communities');
+var coffeeHouses = require('./app/controllers/coffeehouses');
+var user         = require('./app/controllers/user');
 
 var app = express();
 
+var connect = function() {
+    var options = { server: { socketOptions: { keepAlive: 1 } } };
+    mongoose.connect("localhost:27017/doyadb", options);
+};
+connect();
+
+mongoose.connection.on('error', console.log);
+mongoose.connection.on('disconnected', connect);
+mongoose.connection.on('open', function() { console.log('Successfuly Connected to MongoDB'); });
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -29,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', welcome);
 app.use('/about', about);
 app.use('/communities', communities);
-app.use('/cafes', cafes);
+app.use('/coffeehouses', coffeeHouses);
 app.use('/users', users);
 
 app.use('/:username', user);

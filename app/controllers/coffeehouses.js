@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('cafes/index', { title: 'Cafes | Express' });
+    require('../models/coffeehouses');
+  res.render('coffeehouses/index', { title: 'CoffeeHouses | Express' });
 });
 
 
