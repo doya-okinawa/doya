@@ -9,4 +9,4 @@ var CoffeeHouse = mongoose.model('CoffeeHouse', coffeeHouseSchema);
 
 var coffeeHouse = new CoffeeHouse({name: 'staba'});
 
-//coffeeHouse.save();
+coffeeHouse.save();

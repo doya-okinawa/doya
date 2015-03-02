@@ -34,7 +34,6 @@ gulp.task('mongod', function () {
     exec('mongod --config config/mongodb/mongodb.dbpath.config', function(err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
-        cb(err);
     });
 });
 
