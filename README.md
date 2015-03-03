@@ -7,14 +7,14 @@
  
 #### Development
 
-###### Starting MongoDB
+##### Starting MongoDB
 
 $`gulp mongod`
 
-###### Starting server on localhost:30000
+##### Starting server on localhost:30000
 
 $`gulp dev`
 
-###### Starting [BrowserSync](http://www.browsersync.io/)
+##### Starting [BrowserSync](http://www.browsersync.io/)
 
 $`gulp sync`
