@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var about = require('../../../app/controllers/about');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('communities/index', { title: 'Communities | Express' });
+    res.render('about/index', about.index());
 });
-
 
 
 module.exports = router;

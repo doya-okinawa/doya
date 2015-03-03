@@ -7,14 +7,9 @@ var bodyParser       = require('body-parser');
 var mongoose         = require('mongoose');
 var connectionString = require('./config/mongodb/connectionstring.json').string;
 
-var welcome          = require('./app/controllers/welcome');
-var about            = require('./app/controllers/about');
-var users            = require('./app/controllers/users');
-var communities      = require('./app/controllers/communities');
-var coffeeHouses     = require('./app/controllers/coffeehouses');
-var user             = require('./app/controllers/user');
-
 var app = express();
+var routes = require('./config/routes/routes');
+routes(app);
 
 var connect = function() {
     var options = { server: { socketOptions: { keepAlive: 1 } } };
@@ -37,14 +32,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', welcome);
-app.use('/about', about);
-app.use('/communities', communities);
-app.use('/coffeehouses', coffeeHouses);
-app.use('/users', users);
-
-app.use('/:username', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
