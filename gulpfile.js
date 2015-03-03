@@ -37,3 +37,9 @@ gulp.task('mongod', function () {
     });
 });
 
+gulp.task('seed', function () {
+    exec('mongoimport --db doyadb -collection users --file config/mongodb/data/seeds/users.json', function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+    });
+});
