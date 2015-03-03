@@ -1,7 +1,7 @@
 
 var Welcome = {
     index: function() {
-        return {title: 'Express'};
+        return {};
     }
 };
 

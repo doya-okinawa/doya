@@ -1,7 +1,7 @@
 
 var Community = {
     index: function() {
-        return { title: 'Communities | Express' };
+        return {};
     }
 };
 

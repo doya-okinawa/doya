@@ -1,7 +1,7 @@
 
 var CoffeeHouse = {
     index: function() {
-        return { title: 'CoffeeHouses | Express' };
+        return {};
     }
 };
 

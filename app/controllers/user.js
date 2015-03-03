@@ -6,7 +6,6 @@ var UserController = {
         User.find({},function(err, users) {
             if(err) throw new Error();
             res.render('user/index', {
-                title: 'Users | Express',
                 users: users 
             });
         });
@@ -18,7 +17,6 @@ var UserController = {
             console.log(user);
             if(user === null) return next();
             return res.render('user/show', {
-                title: user.username +' | Express',
                 user: user 
             });
         });
