@@ -3,7 +3,7 @@ var browserSync = require('browser-sync');
 var nodemon     = require('gulp-nodemon');
 var exec        = require('child_process').exec;
 
-gulp.task('browserSyncTask', function() {
+gulp.task('sync', function() {
     browserSync({
             proxy: "localhost:3000"
     });
@@ -37,5 +37,3 @@ gulp.task('mongod', function () {
     });
 });
 
-
-gulp.task('default', ['browserSyncTask']);
