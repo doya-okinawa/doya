@@ -7,7 +7,7 @@
  
 ## Development
 
-#### Starting MongoDB
+#### Starting mongoDB
 
 $`gulp mongod`
 
