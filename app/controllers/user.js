@@ -4,7 +4,7 @@ var User = {
         return { title: 'Users | Express' };
     },
     show: function(username) {
-        return { title: 'Notsu', username: username };
+        return { title: username +' | Express', username: username };
     }
 };
 
