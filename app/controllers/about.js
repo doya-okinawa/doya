@@ -1,7 +1,7 @@
 
 var About = {
     index: function() {
-        return { title: 'About | Express' };
+        return {};
     }
 };
 
