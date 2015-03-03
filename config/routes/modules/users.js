@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var user = require('../../../app/controllers/user');
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('cafes/index', { title: 'Cafes | Express' });
+    res.render('user/index', user.index());
 });
-
 
 module.exports = router;

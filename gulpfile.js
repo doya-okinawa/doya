@@ -1,8 +1,9 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var nodemon     = require('gulp-nodemon');
+var exec        = require('child_process').exec;
 
-gulp.task('browserSyncTask', function() {
+gulp.task('sync', function() {
     browserSync({
             proxy: "localhost:3000"
     });
@@ -13,7 +14,7 @@ gulp.task('browserSyncTask', function() {
     gulp.watch("./public/javascripts/*.js", function() {
         browserSync.reload();
     });
-    gulp.watch("./views/**/*.ejs", function() {
+    gulp.watch("./app/views/**/*.ejs", function() {
         browserSync.reload();
     });
 });
@@ -29,4 +30,10 @@ gulp.task('dev', function() {
         });
 });
 
-gulp.task('default', ['browserSyncTask']);
+gulp.task('mongod', function () {
+    exec('mongod --config config/mongodb/mongodb.dbpath.config', function(err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+    });
+});
+
