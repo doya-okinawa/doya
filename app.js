@@ -1,15 +1,17 @@
+var fs               = require('fs');
 var express          = require('express');
+var session          = require('express-session');
 var path             = require('path');
 var favicon          = require('serve-favicon');
 var logger           = require('morgan');
 var cookieParser     = require('cookie-parser');
+var cookieSession    = require('cookie-session');
 var bodyParser       = require('body-parser');
 var mongoose         = require('mongoose');
+var MongoStore       = require('connect-mongo')(session);
 var connectionString = require('./config/mongodb/connectionstring.json').string;
 
 var app = express();
-var routes = require('./config/routes/routes');
-routes(app);
 
 var connect = function() {
     var options = { server: { socketOptions: { keepAlive: 1 } } };
@@ -17,9 +19,17 @@ var connect = function() {
 };
 connect();
 
+// Bootstrap models
+fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
+    if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
+});
+
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 mongoose.connection.on('open', function() { console.log('Successfuly Connected to : ' + connectionString); });
+
+var routes = require('./config/routes/routes');
+routes(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
@@ -32,6 +42,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -63,6 +74,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
     res.render('user/index', user.index());
 });
 
+router.post('/', function(req, res, next) {
+    user.create();
+    res.redirect('/users');
+});
+
 module.exports = router;
