@@ -1,23 +1,37 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-
 var UserController = {
     index: function(req, res, next) {
-        var users;
-        User.find({},function(err, docs) {
+        User.find({},function(err, users) {
             if(err) throw new Error();
-            users = docs; 
-            console.log(users);
+            res.render('user/index', {
+                title: 'Users | Express',
+                users: users 
+            });
         });
-        return { title: 'Users | Express', users: users };
     },
-    show: function(username) {
-        return { title: username +' | Express', username: username };
+    show: function(req, res, next) {
+        // TODO:もっと上手くusernameとれそう
+        var username = req.baseUrl.replace(/^\//,'');
+        User.findOne({ username: username},function(err, user) {
+            console.log(user);
+            if(user === null) return next();
+            return res.render('user/show', {
+                title: user.username +' | Express',
+                user: user 
+            });
+        });
     },
-    create: function() {
-        var user = new User({name: 'notsusan'});
-        user.save();
+    create: function(req, res, next) {
+        var user = new User(req.body);
+        user.save(function(err) {
+            if(err) {
+                err.status = 400;
+                return next(err);
+            }
+            return res.redirect('/'+ user.username);
+        });
     }
 };
 
