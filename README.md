@@ -3,11 +3,11 @@
 ## Requirements
 
 * [NodeJs](http://nodejs.org)
-* [mongodb](http://mongodb.org)
+* [MongoDB](http://mongodb.org)
  
 ## Development
 
-#### Starting mongoDB
+#### Starting MongoDB
 
 $`gulp mongod`
 
