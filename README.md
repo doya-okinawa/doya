@@ -1,4 +1,4 @@
-#### DOYA.IO
+# DOYA.IO
 
 #### Requirements
 
@@ -11,7 +11,7 @@
 
 $`gulp mongod`
 
-##### Starting server on localhost:30000
+##### Starting server on localhost:3000
 
 $`gulp dev`
 
