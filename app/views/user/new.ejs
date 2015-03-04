@@ -1,0 +1,17 @@
+<% var title = 'New User | Express' %>
+<% include ../layout_header %>
+<h1><%= title %></h1>
+    <form method="post" action="/users" class="pure-form">
+      <fieldset>
+        <legend>A Stacked Form</legend>
+       
+        <label for="username">Name</label>
+        <input id="username" name="username" type="text" placeholder="Name">
+       
+        <label for="password">Password</label>
+        <input id="password" name="password" type="text" placeholder="Password">
+
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+      </fieldset>
+    </form>
+<% include ../layout_footer %>
