@@ -4,7 +4,15 @@
 
 * [NodeJs](http://nodejs.org)
 * [MongoDB](http://mongodb.org)
- 
+
+## Installation
+
+$`git clone https://github.com/doya-okinawa/doya`
+
+$`npm install`
+
+$`npm install --global gulp`
+
 ## Development
 
 #### Starting MongoDB
