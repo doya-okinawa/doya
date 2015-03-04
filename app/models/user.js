@@ -6,4 +6,10 @@ var schema = new Schema({
     password: String
 }, { strict: false});
 
+schema.methods = {
+    authenticate: function (password) {
+        return this.password === password;
+    }
+};
+
 mongoose.model('User', schema);
