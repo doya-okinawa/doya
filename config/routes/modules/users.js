@@ -10,4 +10,6 @@ router.get('/:username/edit', user.edit);
 router.put('/:username', user.update);
 router.delete('/:username', user.destroy);
 
+router.param('username', user.preload);
+
 module.exports = router;

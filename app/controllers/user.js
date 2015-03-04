@@ -2,6 +2,15 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 var UserController = {
+    // Preload user by :username then set to req.user
+    preload: function(req, res, next, username) {
+        User.findOne({ username: username},function(err, user) {
+            if(err) return next(err);
+            if(user === null) return next();
+            req.user = user;
+            return next();
+        });
+    },
     // GET /users
     index: function(req, res, next) {
         User.find({},function(err, users) {
@@ -13,14 +22,7 @@ var UserController = {
     },
     // GET /:username
     show: function(req, res, next) {
-        var username = req.params.username;
-        User.findOne({ username: username},function(err, user) {
-            console.log(user);
-            if(user === null) return next();
-            return res.render('user/show', {
-                user: user
-            });
-        });
+        return res.render('user/show', { user: req.user});
     },
     // GET /:username/new
     new: function(req, res, next) {
@@ -40,30 +42,25 @@ var UserController = {
     },
     // GET /:username/edit
     edit: function(req, res, next) {
-        var username = req.params.username;
-        User.findOne({ username: username},function(err, user) {
-            console.log(user);
-            if(user === null) return next();
-            return res.render('user/edit', {
-                user: user
-            });
-        });
+        return res.render('user/edit', { user: req.user });
     },
     // PUT /:username
     update: function(req, res, next) {
-        var username = req.params.username;
-        var userUpdated = req.body;
-        User.findOneAndUpdate({ username: username}, userUpdated,function(err, user) {
-            console.log(err);
-            if(user === null) return next();
-            return res.redirect('/users');
+        var exUser = req.user;
+        var updated = req.body;
+        exUser.update(updated, function(err) {
+            if(err) {
+                err.status = 400;
+                return next(err);
+            }
+            return res.redirect('/'+ updated.username);
         });
     },
     // DELETE /:username
     destroy: function(req, res, next) {
-        var username = req.params.username;
-        User.findOneAndRemove({ username: username},function(err, user) {
-            if(err) return next();
+        var user = req.user;
+        user.remove(function(err) {
+            if(err) return next(err);
             return res.redirect('/users');
         });
     }
