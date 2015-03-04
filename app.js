@@ -9,10 +9,10 @@ var cookieSession    = require('cookie-session');
 var bodyParser       = require('body-parser');
 var multer           = require('multer'); 
 var methodOverride   = require('method-override');
+var passport         = require('passport');
 var mongoose         = require('mongoose');
 var MongoStore       = require('connect-mongo')(session);
 var connectionString = require('./config/mongodb/connectionstring.js');
-
 var app = express();
 
 var connect = function() {
@@ -45,7 +45,13 @@ app.use(methodOverride(function(req, res){
   };
 }));
 app.use(cookieParser());
+app.use(cookieSession({ secret: 'kakikukekooo'}));
+app.use(session({ secret: 'aiueooo'}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./config/passport');
 
 var routes = require('./config/routes/routes');
 routes(app);
