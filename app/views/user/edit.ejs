@@ -1,0 +1,19 @@
+<% var title = 'Edit User | Express' %>
+<% include ../layout_header %>
+<h1><%= title %></h1>
+    <form method="post" action="/<%= user.username  %>" class="pure-form">
+      <input type="hidden" name="_method" value="put">
+
+      <fieldset>
+        <legend>A Stacked Form</legend>
+       
+        <label for="username">Name</label>
+        <input id="username" name="username" type="text" placeholder="Name" value="<%= user.username %>">
+       
+        <label for="password">Password</label>
+        <input id="password" name="password" type="text" placeholder="Password" value="<%= user.password %>">
+
+        <button type="submit" class="pure-button pure-button-primary">Update</button>
+      </fieldset>
+    </form>
+<% include ../layout_footer %>
