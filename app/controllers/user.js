@@ -6,7 +6,11 @@ var UserController = {
     preload: function(req, res, next, username) {
         User.findOne({ username: username},function(err, user) {
             if(err) return next(err);
-            if(user === null) return next();
+            if(user === null) {
+                var userNotFound = new Error('Not Found');
+                userNotFound.status = 404;
+                return next(userNotFound);
+            }
             req.user = user;
             return next();
         });
@@ -24,7 +28,7 @@ var UserController = {
     show: function(req, res, next) {
         return res.render('user/show', { user: req.user});
     },
-    // GET /:username/new
+    // GET /users/new
     new: function(req, res, next) {
         return res.render('user/new');
     },
