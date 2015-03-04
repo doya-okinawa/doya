@@ -9,7 +9,7 @@
 
 ## Installation
 
-$`git clone https://github.com/doya-okinawa/doya`
+$`git clone https://github.com/doya-okinawa/doya && cd doya`
 
 $`npm install`
 
