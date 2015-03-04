@@ -21,7 +21,7 @@ $`gulp mongod`
 
 #### Populating initial data
 
-$`gulp seed`
+$`gulp db:seed`
 
 #### Starting server on localhost:3000
 

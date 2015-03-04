@@ -62,9 +62,7 @@ var UserController = {
     // DELETE /:username
     destroy: function(req, res, next) {
         var username = req.params.username;
-        console.log(username);
         User.findOneAndRemove({ username: username},function(err, user) {
-            console.log(err);
             if(err) return next();
             return res.redirect('/users');
         });
