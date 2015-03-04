@@ -21,9 +21,9 @@ $`gulp mongod`
 
 #### Populating initial data
 
-$`gulp seed`
+$`gulp db:seed`
 
-#### Starting server on localhost:3000
+#### Starting server with nodemon on localhost:3000
 
 $`gulp dev`
 

@@ -1,7 +1,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var nodemon     = require('gulp-nodemon');
-var exec        = require('child_process').exec;
+var execsyncs   = require('gulp-execsyncs');
 
 gulp.task('sync', function() {
     browserSync({
@@ -31,15 +31,33 @@ gulp.task('dev', function() {
 });
 
 gulp.task('mongod', function () {
-    exec('mongod --config config/mongodb/mongodb.dbpath.config', function(err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+    execsyncs({
+        cmd :'mongod --config config/mongodb/mongodb.dbpath.config',
+        callback:function(res) {
+            console.log(res);
+        }
     });
 });
 
-gulp.task('seed', function () {
-    exec('mongoimport --db doyadb -collection users --file config/mongodb/data/seeds/users.json', function(err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+gulp.task('db:seed', function () {
+    execsyncs({
+        cmd : 'mongoimport --db doyadb -collection users --file config/mongodb/data/seeds/users.json',
+        callback: function(res) {
+            console.log(res);
+        }
     });
+});
+
+gulp.task('db:remove', function() {
+    execsyncs({
+        cmd : 'mongo --host localhost doyadb --eval "db.users.remove({})"',
+        callback: function(res) {
+            console.log(res);
+        }
+    });
+});
+
+gulp.task('db:reseed', function () {
+    gulp.start('db:remove');
+    gulp.start('db:seed');
 });

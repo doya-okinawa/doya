@@ -14,7 +14,6 @@
     "ejs": "~2.2.3",
     "express": "~4.11.1",
     "express-session": "^1.10.3",
-    "gulp-exec": "^2.1.1",
     "method-override": "^2.3.1",
     "mongoose": "^3.8.24",
     "morgan": "~1.5.1",
@@ -24,6 +23,7 @@
   "devDependencies": {
     "browser-sync": "^2.2.1",
     "gulp": "^3.8.11",
+    "gulp-execsyncs": "^0.1.1",
     "gulp-nodemon": "^1.0.5"
   }
 }
