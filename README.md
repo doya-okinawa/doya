@@ -1,5 +1,7 @@
 # DOYA.IO
 
+* DOYA-OKINAWA公式サイト 兼 ドヤリングシェアサービスになる予定のもの
+
 ## Requirements
 
 * [NodeJs](http://nodejs.org)
@@ -19,13 +21,13 @@ $`npm install --global gulp`
 
 $`gulp mongod`
 
-#### Populating initial data
-
-$`gulp db:seed`
-
 #### Starting server with nodemon on localhost:3000
 
 $`gulp dev`
+
+#### Populating initial data
+
+$`gulp db:seed`
 
 #### Starting [BrowserSync](http://www.browsersync.io/)
 
