@@ -1,5 +1,5 @@
 <% var title = 'Edit User | Express' %>
-<% include ../layout_header %>
+<% include ../_layouts/header %>
 <h1><%= title %></h1>
     <form method="post" action="/<%= user.username  %>" class="pure-form">
       <input type="hidden" name="_method" value="put">
@@ -16,4 +16,4 @@
         <button type="submit" class="pure-button pure-button-primary">Update</button>
       </fieldset>
     </form>
-<% include ../layout_footer %>
+<% include ../_layouts/footer %>
