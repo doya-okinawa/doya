@@ -5,7 +5,7 @@ var path             = require('path');
 var favicon          = require('serve-favicon');
 var logger           = require('morgan');
 var cookieParser     = require('cookie-parser');
-var cookieSession    = require('cookie-session');
+var flash            = require('connect-flash');
 var bodyParser       = require('body-parser');
 var multer           = require('multer'); 
 var methodOverride   = require('method-override');
@@ -45,8 +45,8 @@ app.use(methodOverride(function(req, res){
   };
 }));
 app.use(cookieParser());
-app.use(cookieSession({ secret: 'kakikukekooo'}));
 app.use(session({ secret: 'aiueooo'}));
+app.use(flash());
 app.use(passport.initialize({ userProperty: 'auth' })); //=> ログイン時はreq.authからログインユーザーが取れる
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));

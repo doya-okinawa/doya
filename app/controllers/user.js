@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User     = mongoose.model('User');
 
 var UserController = {
     // Preload user by :username then set to req.user
@@ -43,7 +43,8 @@ var UserController = {
                 err.status = 400;
                 return next(err);
             }
-            return res.redirect('/'+ user.username);
+            req.flash('notice', 'ユーザ: '+ user.username +' を作成しました。ログインしてください');
+            return res.redirect('/users');
         });
     },
     // GET /:username/edit
@@ -61,6 +62,7 @@ var UserController = {
                 err.status = 400;
                 return next(err);
             }
+            req.flash('notice', 'ユーザを更新しました');
             return res.redirect('/'+ updated.username);
         });
     },
@@ -69,6 +71,7 @@ var UserController = {
         var user = req.user;
         user.remove(function(err) {
             if(err) return next(err);
+            req.flash('notice', 'ユーザを削除しました');
             return res.redirect('/users');
         });
     }

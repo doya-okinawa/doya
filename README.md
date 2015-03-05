@@ -4,7 +4,7 @@
 
 ## Requirements
 
-* [NodeJs](http://nodejs.org)
+* [Nodejs](http://nodejs.org)
 * [MongoDB](http://mongodb.org)
 
 ## Installation

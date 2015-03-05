@@ -1,3 +1,4 @@
+var AOP               = require('./aop');
 var passport          = require('passport');
 var about             = require('../app/controllers/about');
 var community         = require('../app/controllers/community');
@@ -5,12 +6,11 @@ var coffeeHouse       = require('../app/controllers/coffeehouse');
 var user              = require('../app/controllers/user');
 var welcome           = require('../app/controllers/welcome');
 var session           = require('../app/controllers/session');
-var ApplicationHelper = require('../app/helpers/application');
 
 module.exports = function(app) {
 
-    //* Helpers */
-    app.use(ApplicationHelper.auth);
+    //* MiddleWares */
+    app.use(AOP.beforRender);
 
     //* Routes */
     // About
@@ -24,7 +24,7 @@ module.exports = function(app) {
 
     // Session
     app.get('/login'       , session.login);
-    app.post('/login'      , passport.authenticate('local', { failureRedirect: '/login' }), session.signin);
+    app.post('/login'      , passport.authenticate('local', { failureRedirect: '/login' }), session.new);
     app.get('/membersonly' , session.isLogined, session.membersonly);
     app.get('/logout'      , session.logout);
 

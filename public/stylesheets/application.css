@@ -17,6 +17,12 @@ ul {
   margin-right: 10px;
 }
 
-#logged-in {
+#header span {
+    margin-left:4px;
+}
 
+span#header_notice {
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 10px;
 }

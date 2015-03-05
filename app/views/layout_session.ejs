@@ -1,10 +1,16 @@
-  <div id="logged-in">
+  <div id="header">
 <% if (auth) { %>
-    <span>You're logged in as <a href="<%= auth.username %>"><%= auth.username %></a>,</span>
-    <span>You may visit the <a href="/membersonly">Members Only Page</a>,</span>
-    <span>or wanna <a href="/logout">Logout</a>?</span>
+    <span><a href="/logout">Logout</a></span>
+    <span>|</span>
+    <span><a href="/membersonly">MembersOnlyPage</a></span>
+    <span>|</span>
+    <span><a href="<%= auth.username %>"><%= auth.username %></a></span>
 <% } else { %>
     <span><a href="/users/new">SignUp</a></span>
+    <span>|</span>
     <span><a href="/login">LogIn</a></span>
 <% } %>
-  </div>
+<% if (notice) { %>
+    <span id="header_notice"><%= notice %></span>
+<% } %>
+  </div> <!-- #header -->
