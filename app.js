@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('./config/passport');
 
-var routes = require('./config/routes/routes');
+var routes = require('./config/routes');
 routes(app);
 
 // view engine setup
