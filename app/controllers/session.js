@@ -1,13 +1,13 @@
 var SessionController = {
     login: function(req, res, next) {
-        return res.render('session/login',  { auth: req.auth});
+        return res.render('session/login', {});
     },
     signin: function(req, res, next) {
         return res.redirect('/');
     },
     membersonly: function(req, res, next) {
         if(!req.isAuthenticated()) return next();
-        return res.render('session/membersonly', { auth: req.auth});
+        return res.render('session/membersonly', {});
     },
     logout: function(req, res, next) {
         req.logout();

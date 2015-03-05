@@ -1,8 +1,6 @@
 var About = {
     index: function(req, res, next) {
-        return res.render('about/index', {
-            auth: req.auth
-        });
+        return res.render('about/index',{});
     }
 };
 

@@ -1,7 +1,7 @@
   <div id="logged-in">
 <% if (auth) { %>
     <span>You're logged in as <a href="<%= auth.username %>"><%= auth.username %></a>,</span>
-    <span>You may visit to the <a href="/membersonly">Members Only</a> page,</span>
+    <span>You may visit the <a href="/membersonly">Members Only Page</a>,</span>
     <span>or wanna <a href="/logout">Logout</a>?</span>
 <% } else { %>
     <span><a href="/users/new">SignUp</a></span>

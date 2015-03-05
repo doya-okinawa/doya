@@ -1,6 +1,6 @@
 var Welcome = {
     index: function(req, res, next) {
-        return res.render('welcome/index', { auth: req.auth});
+        return res.render('welcome/index', {});
     }
 };
 
