@@ -1,7 +1,6 @@
 <% var title = 'Error' %>
-<% var auth = null %>
-<% include ../layout_header %>
+<% include ../_layouts/header %>
 <h1><%= message %></h1>
 <h2><%= error.status %></h2>
 <pre><%= error.stack %></pre>
-<% include ../layout_footer %>
+<% include ../_layouts/footer %>

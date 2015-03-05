@@ -43,7 +43,7 @@ var UserController = {
                 err.status = 400;
                 return next(err);
             }
-            req.flash('notice', 'ユーザ: '+ user.username +' を作成しました。ログインしてください');
+            req.flash('notice', 'ユーザ: '+ user.username +' を作成しました');
             return res.redirect('/users');
         });
     },

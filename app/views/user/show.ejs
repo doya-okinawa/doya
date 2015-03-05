@@ -1,5 +1,5 @@
 <% var title = user.username +' | Express' %>
-<% include ../layout_header %>
+<% include ../_layouts/header %>
     <h1><%= title %></h1>
     <p>Name : <%= user.username %></p>
     <p>Password: <%= user.password %></p>
@@ -10,4 +10,4 @@
       <input type="hidden" name="_method" value="delete">
       <button type="submit" class="pure-button">Delete</button>
     </form>
-<% include ../layout_footer %>
+<% include ../_layouts/footer %>

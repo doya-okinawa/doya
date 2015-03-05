@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done){
-    done(null, {email: user.email, _id: user._id});
+    done(null, { _id: user._id});
 });
 passport.deserializeUser(function(serializedUser, done){
     User.findById(serializedUser._id, function(err, user){

@@ -1,16 +1,18 @@
-var AOP               = require('./aop');
-var passport          = require('passport');
-var about             = require('../app/controllers/about');
-var community         = require('../app/controllers/community');
-var coffeeHouse       = require('../app/controllers/coffeehouse');
-var user              = require('../app/controllers/user');
-var welcome           = require('../app/controllers/welcome');
-var session           = require('../app/controllers/session');
+var passport           = require('passport');
+var aop                = require('./aop');
+var about              = require('../app/controllers/about');
+var community          = require('../app/controllers/community');
+var coffeeHouse        = require('../app/controllers/coffeehouse');
+var user               = require('../app/controllers/user');
+var welcome            = require('../app/controllers/welcome');
+var session            = require('../app/controllers/session');
+
+var failureFlashOption = { type: 'notice', message: 'ログインに失敗しました'};
 
 module.exports = function(app) {
 
     //* MiddleWares */
-    app.use(AOP.beforRender);
+    app.use(aop.beforRender);
 
     //* Routes */
     // About
@@ -24,7 +26,7 @@ module.exports = function(app) {
 
     // Session
     app.get('/login'       , session.login);
-    app.post('/login'      , passport.authenticate('local', { failureRedirect: '/login' }), session.new);
+    app.post('/login'      , passport.authenticate('local', { failureRedirect: '/login', failureFlash:  failureFlashOption}), session.new);
     app.get('/membersonly' , session.isLogined, session.membersonly);
     app.get('/logout'      , session.logout);
 

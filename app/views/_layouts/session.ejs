@@ -2,9 +2,9 @@
 <% if (auth) { %>
     <span><a href="/logout">Logout</a></span>
     <span>|</span>
-    <span><a href="/membersonly">MembersOnlyPage</a></span>
-    <span>|</span>
     <span><a href="<%= auth.username %>"><%= auth.username %></a></span>
+    <span>|</span>
+    <span><a href="/membersonly">Members Only Page</a></span>
 <% } else { %>
     <span><a href="/users/new">SignUp</a></span>
     <span>|</span>
