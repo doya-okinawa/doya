@@ -1,7 +1,8 @@
-
 var CoffeeHouse = {
-    index: function() {
-        return {};
+    index: function(req, res, next) {
+        return res.render('coffeehouse/index', {
+            auth: req.auth
+        });
     }
 };
 

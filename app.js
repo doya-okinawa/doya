@@ -47,7 +47,7 @@ app.use(methodOverride(function(req, res){
 app.use(cookieParser());
 app.use(cookieSession({ secret: 'kakikukekooo'}));
 app.use(session({ secret: 'aiueooo'}));
-app.use(passport.initialize());
+app.use(passport.initialize({ userProperty: 'auth' })); //=> ログイン時はreq.authからログインユーザーが取れる
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 

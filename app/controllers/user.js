@@ -20,17 +20,23 @@ var UserController = {
         User.find({},function(err, users) {
             if(err) throw new Error();
             res.render('user/index', {
+                auth: req.auth,
                 users: users 
             });
         });
     },
     // GET /:username
     show: function(req, res, next) {
-        return res.render('user/show', { user: req.user});
+        return res.render('user/show', { 
+            auth: req.auth,
+            user: req.user
+        });
     },
     // GET /users/new
     new: function(req, res, next) {
-        return res.render('user/new');
+        return res.render('user/new', {
+            auth: req.auth
+        });
     },
     // POST /users
     create: function(req, res, next) {
@@ -46,7 +52,10 @@ var UserController = {
     },
     // GET /:username/edit
     edit: function(req, res, next) {
-        return res.render('user/edit', { user: req.user });
+        return res.render('user/edit', {
+            auth: req.auth,
+            user: req.user
+        });
     },
     // PUT /:username
     update: function(req, res, next) {
