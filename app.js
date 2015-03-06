@@ -21,7 +21,7 @@ var connect = function() {
 };
 connect();
 
-// Defining mongoose.model
+// Preparing mongoose.model
 fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
     if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
 });
