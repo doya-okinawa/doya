@@ -23,11 +23,15 @@ gulp.task('reload', function () {
     browserSync.reload();
 });
 
-gulp.task('dev', function() {
+gulp.task('start', function() {
     nodemon({ script: './bin/www', ext: 'js ejs json', env: { 'NODE_ENV': 'development' }})
         .on('restart', function () {
             console.log('restarted!');
         });
+});
+
+gulp.task('s', function () {
+    gulp.start('start');
 });
 
 gulp.task('mongod', function () {
@@ -41,7 +45,7 @@ gulp.task('mongod', function () {
 
 gulp.task('db:seed', function () {
     execsyncs({
-        cmd : 'mongoimport --db doyadb -collection users --file config/mongodb/data/seeds/users.json',
+        cmd : 'mongoimport --db doyadb --collection users --file config/mongodb/data/seeds/users.json',
         callback: function(res) {
             console.log(res);
         }
