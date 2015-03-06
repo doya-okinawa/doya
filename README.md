@@ -17,13 +17,13 @@ $`npm install --global gulp`
 
 ## Development
 
-#### Starting MongoDB
+#### Starting MongoDB with project contenxt
 
 $`gulp mongod`
 
 #### Starting server with nodemon on localhost:3000
 
-$`gulp dev`
+$`gulp s`
 
 #### Populating initial data
 
