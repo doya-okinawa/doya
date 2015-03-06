@@ -23,11 +23,15 @@ gulp.task('reload', function () {
     browserSync.reload();
 });
 
-gulp.task('dev', function() {
+gulp.task('start', function() {
     nodemon({ script: './bin/www', ext: 'js ejs json', env: { 'NODE_ENV': 'development' }})
         .on('restart', function () {
             console.log('restarted!');
         });
+});
+
+gulp.task('s', function () {
+    gulp.start('start');
 });
 
 gulp.task('mongod', function () {

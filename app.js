@@ -13,7 +13,7 @@ var passport         = require('passport');
 var mongoose         = require('mongoose');
 var MongoStore       = require('connect-mongo')(session);
 var connectionString = require('./config/mongodb/connectionstring.js');
-var app = express();
+var app              = express();
 
 var connect = function() {
     var options = { server: { socketOptions: { keepAlive: 1 } } };
@@ -52,9 +52,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./config/passport');
-
-var routes = require('./config/routes');
-routes(app);
+require('./config/routes')(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
