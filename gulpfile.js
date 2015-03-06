@@ -45,7 +45,7 @@ gulp.task('mongod', function () {
 
 gulp.task('db:seed', function () {
     execsyncs({
-        cmd : 'mongoimport --db doyadb -collection users --file config/mongodb/data/seeds/users.json',
+        cmd : 'mongoimport --db doyadb --collection users --file config/mongodb/data/seeds/users.json',
         callback: function(res) {
             console.log(res);
         }
