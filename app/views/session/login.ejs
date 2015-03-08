@@ -1,17 +1,5 @@
-<% var title = 'Login | Express' %>
+<% var title = 'Login' %>
 <% include ../_layouts/header %>
 <h1><%= title %></h1>
-<form method="post" action="/login" class="pure-form">
-  <fieldset>
-    <legend>A Stacked Form</legend>
-
-    <label for="username">Name</label>
-    <input id="username" name="username" type="text" placeholder="Name">
-    
-    <label for="password">Password</label>
-    <input id="password" name="password" type="text" placeholder="Password">
-
-    <button type="submit" class="pure-button pure-button-primary">Login</button>
-  </fieldset>
-</form>
+<a href="/auth/twitter">Twitteでログイン</a>
 <% include ../_layouts/footer %>

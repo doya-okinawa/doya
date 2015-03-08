@@ -52,6 +52,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./config/passport');
+require('./config/passport/twitter');
 require('./config/routes')(app);
 
 // view engine setup

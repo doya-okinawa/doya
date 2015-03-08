@@ -5,6 +5,7 @@ var coffeeHouse        = require('../app/controllers/coffeehouse');
 var user               = require('../app/controllers/user');
 var welcome            = require('../app/controllers/welcome');
 var session            = require('../app/controllers/session');
+var passport           = require('passport');
 
 module.exports = function(app) {
 
@@ -27,6 +28,16 @@ module.exports = function(app) {
     app.get('/membersonly' , session.membersonly);
     app.get('/logout'      , session.logout);
 
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+
+    app.get('/auth/twitter/callback', 
+            passport.authenticate('twitter', { failureRedirect: '/login' }),
+            function(req, res) {
+                // Successful authentication, redirect home.
+                req.flash('notice', 'ログインしました');
+                res.redirect('/');
+            });
+    
     // User
     app.get('/users'          , user.index);
     app.get('/:username'      , user.show);
