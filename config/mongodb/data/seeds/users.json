@@ -1,5 +1,1 @@
-{"username":"notsu1", "password":"pass1" }
-{"username":"notsu2", "password":"pass2" }
-{"username":"notsu3", "password":"pass3" }
-{"username":"notsu4", "password":"pass4" }
-{"username":"notsu5", "password":"pass5" }
+{"username" : "notsunohito", "display_name" : "のつの人", "icon_url" : "http://pbs.twimg.com/profile_images/3417523316/0a4396935c3214110d2f3295479a77bb_normal.jpeg", "provider" : "twitter", "twitter" : { "profile_image_url" : "http://pbs.twimg.com/profile_images/3417523316/0a4396935c3214110d2f3295479a77bb_normal.jpeg", "screen_name" : "notsunohito", "name" : "のつの人", "id" : 100904492 }}

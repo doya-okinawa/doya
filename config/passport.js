@@ -26,3 +26,4 @@ passport.deserializeUser(function(serializedUser, done){
         done(err, user);
     });
 });
+

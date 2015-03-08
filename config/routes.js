@@ -34,6 +34,7 @@ module.exports = function(app) {
             passport.authenticate('twitter', { failureRedirect: '/login' }),
             function(req, res) {
                 // Successful authentication, redirect home.
+                req.flash('notice', 'ログインしました');
                 res.redirect('/');
             });
     

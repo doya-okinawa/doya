@@ -7,12 +7,12 @@
       <fieldset>
         <legend>A Stacked Form</legend>
        
-        <label for="username">Name</label>
+        <label for="display_name">Display Name</label>
+        <input id="display_name" name="display_name" type="text" placeholder="Display Name" value="<%= user.display_name %>">
+
+        <label for="username">User Name</label>
         <input id="username" name="username" type="text" placeholder="Name" value="<%= user.username %>">
        
-        <label for="password">Password</label>
-        <input id="password" name="password" type="text" placeholder="Password" value="<%= user.password %>">
-
         <button type="submit" class="pure-button pure-button-primary">Update</button>
       </fieldset>
     </form>

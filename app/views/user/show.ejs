@@ -1,13 +1,19 @@
-<% var title = user.username +' | Express' %>
+<% var title = user.display_name +' | Profile' %>
 <% include ../_layouts/header %>
+
     <h1><%= title %></h1>
-    <p>Name : <%= user.username %></p>
-    <p>Password: <%= user.password %></p>
+    <p><img src="<%= user.icon_url %>"></p>
+    <p>Twitter ID : <%= user.twitter.id %></p>
+    <p>User Name : <a href="https://twitter.com/<%= user.username %>" target="_blank"><%= user.username %></a></p>
+    <p>Display Name : <%= user.display_name %></p>
+
     <a href="/<%= user.username %>/edit">
        <button  class="pure-button pure-button-primary f-left">Edit</button>
     </a>
+
     <form method="post" action="/<%= user.username  %>" enctype="application/x-www-form-urlencoded">
       <input type="hidden" name="_method" value="delete">
       <button type="submit" class="pure-button">Delete</button>
     </form>
+
 <% include ../_layouts/footer %>
