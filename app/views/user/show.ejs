@@ -2,9 +2,20 @@
 <% include ../_layouts/header %>
 
     <h1><%= title %></h1>
-    <p><img src="<%= user.icon_url %>"></p>
-    <p>Twitter ID : <%= user.twitter.id %></p>
-    <p>User Name : <a href="https://twitter.com/<%= user.username %>" target="_blank"><%= user.username %></a></p>
+
+<% if (user.provider === 'twitter') { %>
+    <p>
+      <a href="https://twitter.com/intent/user?user_id=<%= user.providers.twitter.id %>" target="_blank">
+        <img src="<%= user.icon_url %>" width="48px" height="48px">
+      </a>
+    </p>
+    <p>Twitter ID : <%= user.providers.twitter.id %></p>
+<% } else if (user.provider === 'github') { %>
+    <p><a href="https://github.com/<%= user.providers.name %>" target="_blank"><img src="<%= user.icon_url %>" width="48px" height="48px"></a></p>
+    <p>GitHub ID : <%= user.providers.github.id %></p>
+<% } %>
+
+    <p>User Name : <%= user.username %></p>
     <p>Display Name : <%= user.display_name %></p>
 
     <a href="/<%= user.username %>/edit">

@@ -1,3 +1,4 @@
+var _        = require('lodash');
 var mongoose = require('mongoose');
 var User     = mongoose.model('User');
 
@@ -32,12 +33,14 @@ var UserController = {
     },
     // GET /users/new
     new: function(req, res, next) {
-        return res.render('user/new', {});
+        var user = JSON.parse( req.flash('newUser') );
+        return res.render('user/new', { user: user});
     },
     // POST /users
     create: function(req, res, next) {
-        console.log(req.body);
-        var user = new User(req.body);
+        var rawUser = req.body;
+        rawUser.providers = JSON.parse( rawUser.providers );
+        var user = new User(rawUser);
         user.save(function(err) {
             if(err) {
                 err.status = 400;

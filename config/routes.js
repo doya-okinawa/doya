@@ -1,3 +1,5 @@
+var passport           = require('passport');
+var mongoose           = require('mongoose');
 var aop                = require('./aop');
 var about              = require('../app/controllers/about');
 var community          = require('../app/controllers/community');
@@ -5,7 +7,7 @@ var coffeeHouse        = require('../app/controllers/coffeehouse');
 var user               = require('../app/controllers/user');
 var welcome            = require('../app/controllers/welcome');
 var session            = require('../app/controllers/session');
-var passport           = require('passport');
+var User            = mongoose.model('User');
 
 module.exports = function(app) {
 
@@ -29,15 +31,49 @@ module.exports = function(app) {
     app.get('/logout'      , session.logout);
 
     app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter/callback', function(req, res, next){
+        passport.authenticate('twitter', function(err, user, info) {
 
-    app.get('/auth/twitter/callback', 
-            passport.authenticate('twitter', { failureRedirect: '/login' }),
-            function(req, res) {
-                // Successful authentication, redirect home.
-                req.flash('notice', 'ログインしました');
-                res.redirect('/');
+            User.findOne({ 'providers.twitter.id': user.providers.twitter.id }, function(err, found) {
+                if(err) return next(err);
+                if(!found) {
+                    req.flash('newUser', JSON.stringify(user) );
+                    return res.redirect('/users/new');
+                }
+                req.login(found, function(err) {
+                    if (err) { return next(err); }
+                    req.flash('notice', 'ログインしました');
+                    return res.redirect('/');
+                });
             });
-    
+        })(req, res, next);
+    });
+
+    app.get('/auth/github', passport.authenticate('github'));
+    app.get('/auth/github/callback', function(req, res, next){
+        passport.authenticate('github', function(err, user, info) {
+
+            User.findOne({ 'providers.github.id': user.providers.github.id }, function(err, found) {
+                if(err) return next(err);
+                if(!found) {
+                    req.flash('newUser', JSON.stringify(user) );
+                    return res.redirect('/users/new');
+                }
+                req.login(found, function(err) {
+                    if (err) { return next(err); }
+                    req.flash('notice', 'ログインしました');
+                    return res.redirect('/');
+                });
+            });
+        })(req, res, next);
+    });
+            // passport.authenticate('github', { failureRedirect: '/login' }),
+            // function(req, res) {
+            //     // Successful authentication, redirect home.
+            //     req.flash('notice', 'ログインしました');
+            //     res.redirect('/');
+            // });
+
     // User
     app.get('/users'          , user.index);
     app.get('/:username'      , user.show);
@@ -48,6 +84,7 @@ module.exports = function(app) {
     app.delete('/:username'   , user.destroy);
     app.param('username'      , user.preload);
 
+    // Welcome
     app.get('/', welcome.index);
 };
 
