@@ -53,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('./config/passport');
 require('./config/passport/twitter');
+require('./config/passport/github');
 require('./config/routes')(app);
 
 // view engine setup
@@ -72,8 +73,13 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
+        if(err.code === 11000) {
+            // TODO: 別のusernameできるようにする
+            req.flash('notice', 'すでに登録されているusernameです');
+            return res.redirect('/');
+        }
         res.status(err.status || 500);
-        res.render('error/error', {
+        return res.render('error/error', {
             message: err.message,
             error: err
         });
@@ -83,8 +89,13 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+    if(err.code === 11000) {
+        // TODO: 別のusernameできるようにする
+        req.flash('notice', 'すでに登録されているusernameです');
+        return res.redirect('/');
+    }
     res.status(err.status || 500);
-    res.render('error/error', {
+    return res.render('error/error', {
         message: err.message,
         error: {}
     });
