@@ -46,8 +46,11 @@ var UserController = {
                 err.status = 400;
                 return next(err);
             }
-            req.flash('notice', 'ユーザ: '+ user.username +' を作成しました');
-            return res.redirect('/users');
+            req.login(user, function(err) {
+                if (err) { return next(err); }
+                req.flash('notice', 'ログインしました');
+                return res.redirect('/');
+            });
         });
     },
     // GET /:username/edit

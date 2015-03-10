@@ -45,7 +45,9 @@ app.use(methodOverride(function(req, res){
   };
 }));
 app.use(cookieParser());
-app.use(session({ secret: 'aiueooo'}));
+app.use(session({ secret: 'aiueooo',
+                  store: new MongoStore({ url: connectionString})
+                }));
 app.use(flash());
 app.use(passport.initialize({ userProperty: 'auth' })); //=> ログイン時はreq.authからログインユーザーが取れる
 app.use(passport.session());
