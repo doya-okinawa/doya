@@ -32,3 +32,7 @@ $`gulp db:seed`
 #### Starting [BrowserSync](http://www.browsersync.io/)
 
 $`gulp sync`
+
+#### Debugging
+
+$`gulp d`

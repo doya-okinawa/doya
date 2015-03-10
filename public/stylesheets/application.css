@@ -18,11 +18,16 @@ a {
 }
 
 #header span {
-    margin-left:4px;
+  margin-left:4px;
 }
 
 span#header_notice {
-    margin-left: 10px;
-    font-size: 14px;
-    line-height: 10px;
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 10px;
+}
+
+span#header_name {
+  font-size: 14px;
+  line-height: 10px;
 }
