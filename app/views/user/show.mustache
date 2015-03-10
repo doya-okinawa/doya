@@ -1,0 +1,52 @@
+{{> header }}
+
+    <h1>{{ title }}</h1>
+
+{{# user }}
+
+    <h2>User</h2>
+
+    <h3>User Name : {{ username }}</h2>
+    <h3>Display Name : {{ display_name }}</h2>
+
+    <a href="/{{ username }}/edit">
+       <button  class="pure-button pure-button-primary f-left">Edit</button>
+    </a>
+
+    <form method="post" action="/{{ username }}" enctype="application/x-www-form-urlencoded">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="pure-button">Delete</button>
+    </form>
+
+  {{# providers }}
+    <div id="providers">
+      <h2>Providers</h2>
+
+      {{# twitter }}
+        <h3>Twitter</h3>
+        <p>
+          <a href="https://twitter.com/{{ screen_name }}" target="_blank">
+            <img src="{{ user.icon_url }}" width="48px" height="48px">
+          </a>
+        </p>
+        <p>Screen Name : {{ screen_name }}</p>
+        <p>Twitter ID : {{ id }}</p>
+      {{/ twitter }}
+       
+      {{# github }}
+        <h3>GitHub</h3>   
+        <p>
+          <a href="https://github.com/{{ login }}" target="_blank">
+            <img src="{{  user.icon_url }}" width="48px" height="48px">
+          </a>
+        </p>
+        <p>Name : {{ name }}</p>
+        <p>GitHub ID : {{ id }}</p>
+      {{/ github }}
+
+    </div>
+  {{/ providers }}
+
+{{/ user }}
+
+{{> footer }}

@@ -13,6 +13,7 @@ var passport         = require('passport');
 var mongoose         = require('mongoose');
 var MongoStore       = require('connect-mongo')(session);
 var connectionString = require('./config/mongodb/connectionstring.js');
+var consolidate      = require('consolidate');
 var app              = express();
 
 var connect = function() {
@@ -45,7 +46,9 @@ app.use(methodOverride(function(req, res){
   };
 }));
 app.use(cookieParser());
-app.use(session({ secret: 'aiueooo'}));
+app.use(session({ secret: 'aiueooo',
+                  store: new MongoStore({ url: connectionString})
+                }));
 app.use(flash());
 app.use(passport.initialize({ userProperty: 'auth' })); //=> ログイン時はreq.authからログインユーザーが取れる
 app.use(passport.session());
@@ -58,7 +61,8 @@ require('./config/routes')(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
-app.set('view engine', 'ejs');
+app.engine('mustache', consolidate.hogan);
+app.set('view engine', 'mustache');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

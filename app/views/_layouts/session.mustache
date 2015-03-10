@@ -1,0 +1,19 @@
+<div id="header">
+{{#auth}}
+  <span><a href="/logout">Logout</a></span>
+  <span>|</span>
+  <span>
+    <a href="{{ username }}">
+      {{ display_name }}
+    </a>
+  </span>
+  <span>|</span>
+  <span><a href="/membersonly">Members Only Page</a></span>
+{{/auth}}
+{{^auth}}
+  <span><a href="/login">LogIn</a></span>
+{{/auth}}
+{{#notice}}
+  <span id="header_notice">{{ notice }}</span>
+{{/notice}}
+</div> <!-- #header -->

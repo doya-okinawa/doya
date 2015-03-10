@@ -1,6 +1,6 @@
 var About = {
     index: function(req, res, next) {
-        return res.render('about/index',{});
+        return res.render('about/index',{ title: 'About'});
     }
 };
 

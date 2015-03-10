@@ -21,13 +21,15 @@ var UserController = {
         User.find({},function(err, users) {
             if(err) throw new Error();
             res.render('user/index', {
+                title: 'Users',
                 users: users 
-            });
+            }); 
         });
     },
     // GET /:username
     show: function(req, res, next) {
         return res.render('user/show', {
+            title: req.user.display_name,
             user: req.user
         });
     },
@@ -46,13 +48,17 @@ var UserController = {
                 err.status = 400;
                 return next(err);
             }
-            req.flash('notice', 'ユーザ: '+ user.username +' を作成しました');
-            return res.redirect('/users');
+            req.login(user, function(err) {
+                if (err) { return next(err); }
+                req.flash('notice', 'ログインしました');
+                return res.redirect('/');
+            });
         });
     },
     // GET /:username/edit
     edit: function(req, res, next) {
         return res.render('user/edit', {
+            title: 'Edit',
             user: req.user
         });
     },
