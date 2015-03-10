@@ -36,7 +36,10 @@ var UserController = {
     // GET /users/new
     new: function(req, res, next) {
         var user = JSON.parse( req.flash('newUser') );
-        return res.render('user/new', { user: user});
+        return res.render('user/new', {
+            title: 'New User',
+            user: user,
+            providers: JSON.stringify( user.providers )});
     },
     // POST /users
     create: function(req, res, next) {

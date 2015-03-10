@@ -1,27 +1,26 @@
-<% var title = 'New User | Express' %>
-<% include ../_layouts/header %>
-<h1><%= title %></h1>
+{{> header }}
+<h1>{{ title }}</h1>
     <form method="post" action="/users" class="pure-form">
       <fieldset>
-        <legend>A Stacked Form</legend>
-   
+        <legend>この内容で登録しますか?</legend>
+{{#user}}
         <label for="username">User Name:</label>
-        <input id="username" name="username" type="text" placeholder="User Name" value="<%= user.username %>">
+        <input id="username" name="username" type="text" placeholder="User Name" value="{{ username }}">
         <br>
        
         <label for="display_name">Display Name:</label>
-        <input id="display_name" name="display_name" type="text" placeholder="Display Name" value="<%= user.display_name %>">
+        <input id="display_name" name="display_name" type="text" placeholder="Display Name" value="{{ display_name }}">
         <br>
 
         <label for="provider">provider:</label>
-        <input id="provider" name="provider" type="text" placeholder="provider" value="<%= user.provider %>">
+        <input id="provider" name="provider" type="text" placeholder="provider"readonly="readonly" value="{{ provider }}">
         <br>
 
-        <input id="icon_url" name="icon_url" type="text" placeholder="icon_url" value="<%= user.icon_url %>" hidden>
-        <input id="providers" name="providers" type="text" placeholder="providers" value="<%= JSON.stringify( user.providers ) %>" hidden>
+        <input id="icon_url" name="icon_url" type="text" placeholder="icon_url" value="{{ icon_url }}" hidden>
+{{/user}}
 
-
+        <input id="providers" name="providers" type="text" placeholder="providers" value="{{ providers }}" hidden>
         <button type="submit" class="pure-button pure-button-primary">Sign in</button>
       </fieldset>
     </form>
-<% include ../_layouts/footer %>
+{{> footer }}
