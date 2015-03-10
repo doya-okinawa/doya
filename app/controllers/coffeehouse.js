@@ -1,6 +1,6 @@
 var CoffeeHouse = {
     index: function(req, res, next) {
-        return res.render('coffeehouse/index', {});
+        return res.render('coffeehouse/index', { title: 'CoffeeHouses'});
     }
 };
 

@@ -3,13 +3,13 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+ul {
+  list-style-type: none;
+}
+
 a {
   color: #00B7FF;
   text-decoration: none;
-}
-
-ul {
-  list-style-type: none;
 }
 
 .f-left {

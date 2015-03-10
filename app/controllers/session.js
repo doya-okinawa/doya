@@ -2,7 +2,7 @@ var passport = require('passport');
 
 var SessionController = {
     login: function(req, res, next) {
-        return res.render('session/login', {});
+        return res.render('session/login', { title: 'Login'});
     },
     create: [ passport.authenticate('local', { failureRedirect: '/login', failureFlash: { type: 'notice', message: 'ログインに失敗しました' }}),
               function(req, res, next) {
@@ -16,7 +16,7 @@ var SessionController = {
                    },
                    function(req, res, next) {
                        if(!req.isAuthenticated()) return next();
-                       return res.render('session/membersonly', {});
+                       return res.render('session/membersonly', { title: 'Members Only'});
                    }],
     logout: function(req, res, next) {
         req.logout();

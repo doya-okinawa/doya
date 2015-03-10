@@ -21,13 +21,15 @@ var UserController = {
         User.find({},function(err, users) {
             if(err) throw new Error();
             res.render('user/index', {
+                title: 'Users',
                 users: users 
-            });
+            }); 
         });
     },
     // GET /:username
     show: function(req, res, next) {
         return res.render('user/show', {
+            title: req.user.display_name,
             user: req.user
         });
     },
@@ -56,6 +58,7 @@ var UserController = {
     // GET /:username/edit
     edit: function(req, res, next) {
         return res.render('user/edit', {
+            title: 'Edit',
             user: req.user
         });
     },
