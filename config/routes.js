@@ -2,7 +2,7 @@ var aop         = require('./aop');
 var welcome     = require('../app/controllers/welcome');
 var about       = require('../app/controllers/about');
 var community   = require('../app/controllers/community');
-var coffeeHouse = require('../app/controllers/coffeehouse');
+var coffeehouse = require('../app/controllers/coffeehouse');
 var session     = require('../app/controllers/session');
 var setting     = require('../app/controllers/setting');
 var auth        = require('../app/controllers/auth');
@@ -24,7 +24,7 @@ module.exports = function(app) {
     app.get('/communities', community.index);
 
     // CoffeHouse
-    app.get('/coffeehouses', coffeeHouse.index);
+    app.get('/coffeehouses', coffeehouse.index);
 
     // Session
     app.get('/login'    , session.login);

@@ -27,7 +27,7 @@ function derivePartials(view) {
             .reduce(function(memo, char) {
                 return char === '/' ? memo +'..': memo;
             }, '');
-    return { header: relativePath +'/_layouts/header',
-             session: relativePath +'/_layouts/session',
-             footer: relativePath +'/_layouts/footer' };
+    return { header: relativePath +'/_partials/header',
+             session: relativePath +'/_partials/session',
+             footer: relativePath +'/_partials/footer' };
 };
