@@ -1,0 +1,39 @@
+{{> header }}
+<h1>{{ title }}</h1>
+{{# user }}
+
+  {{# providers }}
+  <h2>Providers</h2>
+    <ul>
+    {{# twitter }}
+      <li><span class="octicon octicon-check checked-green"></span> Twitterアカウント認証済み</li>
+    {{/ twitter }}
+    {{# github }}
+      <li><span class="octicon octicon-check checked-green"></span> GitHubアカウント認証済み</li>
+    {{/ github }}
+    </ul>
+  {{/ providers }}
+
+  <h2>Change User Name</h2>
+  <p>Your Current URL : <a id="your_url" href="/{{ username }}" target="_blank" >http://localhost/{{ username }}</a></p>
+  <form method="post" action="/settings/account" class="pure-form">
+    <input type="hidden"a name="_method" value="put">
+
+    <fieldset>
+      <input id="username" name="username" type="text" placeholder="Name" value="{{ username }}">
+
+      <button type="submit" class="pure-button pure-button-primary">Update</button>
+    </fieldset>
+  </form>
+
+
+
+  <h2>Delete Account</h2>
+  <form method="post" action="/{{ auth.username }}" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="_method" value="delete">
+
+    <button type="submit" class="pure-button">Delete</button>
+  </form>
+
+{{/ user }}
+{{> footer }}

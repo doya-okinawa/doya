@@ -1,5 +1,5 @@
 // ViewのRender直前に各Viewで共通的に利用するlocalsを追加する
-exports.beforRender = function(req, res, next) {
+module.exports = function(req, res, next) {
     var render = res.render;
     res.render = function(view, locals, cb) {
         var notice = req.flash('notice');
@@ -27,7 +27,7 @@ function derivePartials(view) {
             .reduce(function(memo, char) {
                 return char === '/' ? memo +'..': memo;
             }, '');
-    return { header: relativePath +'/_layouts/header',
-             session: relativePath +'/_layouts/session',
-             footer: relativePath +'/_layouts/footer' };
-};
+    return { header: relativePath +'/_partials/header',
+             session: relativePath +'/_partials/session',
+             footer: relativePath +'/_partials/footer' };
+}

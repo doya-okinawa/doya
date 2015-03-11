@@ -1,10 +1,10 @@
 {{> header}}
     <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
     {{# auth }}
-      <p>ここにログイン時のコンテンツ
+    <p>Hi <a href="/{{ auth.username }}">{{ auth.display_name }}</a>!</p>
     {{/ auth }}
+    <p>Welcome to {{ title }}</p>
     {{^ auth }}
-      <p>ここにログインしてない時のコンテンツ
+    <p><a href="/login">Sign Up now!</a></p>
     {{/ auth }}
 {{> footer}}

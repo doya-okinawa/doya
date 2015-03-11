@@ -31,3 +31,7 @@ span#header_name {
   font-size: 14px;
   line-height: 10px;
 }
+
+.checked-green {
+    color: #00FF7F;
+}
