@@ -2,15 +2,12 @@ var _               = require('lodash');
 var mongoose        = require('mongoose');
 var passport        = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-var Env             = require('../env/env');
+var keys            = require('../env/keys');
 var User            = mongoose.model('User');
 
 passport.use(new TwitterStrategy({
-    // Create Twitter Apps in `https://apps.twitter.com/` with Specific CallBackURL
-    //                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
-    //                                                    example -> Callback URL : `http://127.0.0.1:3000/auth/twitter/callback`
-    consumerKey: Env.TWITTER_CLIENTID,
-    consumerSecret: Env.TWITTER_SECRET,
+    consumerKey: keys.TWITTER_CLIENTID,
+    consumerSecret: keys.TWITTER_SECRET,
     callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
