@@ -6,11 +6,6 @@ var SessionController = {
         return res.render('session/login', { title: 'Login'});
     },
 
-    create: function(req, res, next) {
-        req.flash('notice', 'ログインしました');
-        return res.redirect('/');
-    },
-
     logout: function(req, res, next) {
         req.logout();
         req.flash('notice', 'ログアウトしました');

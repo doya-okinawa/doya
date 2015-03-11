@@ -1,12 +1,12 @@
-var beforRender = require('./middlewares/beforrender');
-var welcome     = require('../app/controllers/welcome');
-var about       = require('../app/controllers/about');
-var community   = require('../app/controllers/community');
-var coffeehouse = require('../app/controllers/coffeehouse');
-var session     = require('../app/controllers/session');
-var auth        = require('../app/controllers/auth');
-var setting     = require('../app/controllers/setting');
-var user        = require('../app/controllers/user');
+var beforRender   = require('./middlewares/beforrender');
+var welcome       = require('../app/controllers/welcome');
+var about         = require('../app/controllers/about');
+var community     = require('../app/controllers/community');
+var coffeehouse   = require('../app/controllers/coffeehouse');
+var session       = require('../app/controllers/session');
+var auth          = require('../app/controllers/auth');
+var setting       = require('../app/controllers/setting');
+var user          = require('../app/controllers/user');
 
 module.exports = function(app) {
 
@@ -28,7 +28,6 @@ module.exports = function(app) {
 
     // Session
     app.get('/login'    , session.login);
-    app.post('/login'   , session.create);
     app.get('/logout'   , session.logout);
 
     // Auth
