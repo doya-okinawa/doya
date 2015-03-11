@@ -79,7 +79,7 @@ gulp.task('sync', function() {
     gulp.watch("./public/javascripts/*.js", function() {
         browserSync.reload();
     });
-    gulp.watch("./app/views/**/*.ejs", function() {
+    gulp.watch("./app/views/**/*.mustache", function() {
         browserSync.reload();
     });
 });

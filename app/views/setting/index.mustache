@@ -5,9 +5,8 @@
       <li>
         <a href="/settings/profile">Edit Profile</a>
       </li>
+      <li>
+        <a href="/settings/account">Edit Account</a>
+      </li>
     </ul>
-    <form method="post" action="/{{ auth.username }}" enctype="application/x-www-form-urlencoded">
-      <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="pure-button">Delete</button>
-    </form>
 {{> footer}}

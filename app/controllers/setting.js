@@ -10,11 +10,22 @@ var SettingController = {
     }),
     profile: needsSession(function(req, res, next) {
         return res.render('setting/profile', {
-            title: 'Settings/Profile',
+            title: 'Profile/Setting',
             user: req.auth
         });
     }),
-    update: needsSession(function(req, res, next) {
+    updateProfile: updateAndRedirect('/settings/profile'),
+    account: needsSession(function(req, res, next) {
+        return res.render('setting/account', {
+            title: 'Account/Setting',
+            user: req.auth
+        });
+    }),
+    updateAccount: updateAndRedirect('/settings/account')
+};
+
+function updateAndRedirect(redirectTo) {
+    return needsSession(function(req, res, next) {
         var exUser = req.auth;
         var updated = req.body;
         exUser.update(updated, function(err) {
@@ -23,9 +34,9 @@ var SettingController = {
                 return next(err);
             }
             req.flash('notice', 'ユーザを更新しました');
-            return res.redirect('/settings/profile');
+            return res.redirect(redirectTo);
         });
-    })
-};
+    });
+}
 
 module.exports = SettingController;
