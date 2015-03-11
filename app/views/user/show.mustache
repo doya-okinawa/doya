@@ -9,15 +9,6 @@
     <h3>User Name : {{ username }}</h2>
     <h3>Display Name : {{ display_name }}</h2>
 
-    <a href="/{{ username }}/edit">
-       <button  class="pure-button pure-button-primary f-left">Edit</button>
-    </a>
-
-    <form method="post" action="/{{ username }}" enctype="application/x-www-form-urlencoded">
-      <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="pure-button">Delete</button>
-    </form>
-
   {{# providers }}
     <div id="providers">
       <h2>Providers</h2>

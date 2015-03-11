@@ -1,5 +1,10 @@
 {{> header}}
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
-    <p><a href="/membersonly">Members Only Page</a></p>
+    {{# auth }}
+      <p>ここにログイン時のコンテンツ
+    {{/ auth }}
+    {{^ auth }}
+      <p>ここにログインしてない時のコンテンツ
+    {{/ auth }}
 {{> footer}}

@@ -1,6 +1,7 @@
-var _        = require('lodash');
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
+var _            = require('lodash');
+var mongoose     = require('mongoose');
+var User         = mongoose.model('User');
+var needsSession = require('./_shared_functions.js').needsSession;
 
 var UserController = {
     // Preload user by :username then set to req.user
@@ -51,42 +52,28 @@ var UserController = {
                 err.status = 400;
                 return next(err);
             }
-            req.login(user, function(err) {
+            return req.login(user, function(err) {
                 if (err) { return next(err); }
                 req.flash('notice', 'ログインしました');
                 return res.redirect('/');
             });
         });
     },
-    // GET /:username/edit
-    edit: function(req, res, next) {
-        return res.render('user/edit', {
-            title: 'Edit',
-            user: req.user
-        });
-    },
-    // PUT /:username
-    update: function(req, res, next) {
-        var exUser = req.user;
-        var updated = req.body;
-        exUser.update(updated, function(err) {
-            if(err) {
-                err.status = 400;
-                return next(err);
-            }
-            req.flash('notice', 'ユーザを更新しました');
-            return res.redirect('/'+ updated.username);
-        });
-    },
     // DELETE /:username
-    destroy: function(req, res, next) {
+    destroy: needsSession(function(req, res, next) {
         var user = req.user;
+        var authId = req.auth._doc._id.id;
+        if(user._doc._id.id !== authId) {
+            res.status = 403;
+            req.flash('notice', 'このユーザを削除する権限がありません');
+            return res.redirect('/');
+        }
         user.remove(function(err) {
             if(err) return next(err);
             req.flash('notice', 'ユーザを削除しました');
             return res.redirect('/users');
         });
-    }
+    })
 };
 
 module.exports = UserController;
