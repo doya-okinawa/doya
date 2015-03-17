@@ -2,6 +2,10 @@
 
 * DOYA-OKINAWA公式サイト 兼 ドヤリングシェアサービスになる予定のもの
 
+## Contribution
+
+* [GitHub Flow](http://qiita.com/tbpgr/items/4ff76ef35c4ff0ec8314)
+
 ## Requirements
 
 * [Nodejs](http://nodejs.org)
