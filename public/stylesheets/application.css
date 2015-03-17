@@ -1,6 +1,7 @@
 body {
   padding: 4px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #565d64;
 }
 
 ul {
@@ -33,5 +34,9 @@ span#header_name {
 }
 
 .checked-green {
-    color: #00FF7F;
+  color: #00FF7F;
+}
+
+.title {
+  font-size: 18px;
 }

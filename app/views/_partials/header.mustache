@@ -5,23 +5,22 @@
     <link rel="stylesheet" href="/fonts/octicons/octicons.css">
     <link rel="stylesheet" href="/stylesheets/lib/grids-responsive-min.css" />
     <link rel="stylesheet" href="/stylesheets/lib/pure-min.css" />
-    <link rel="stylesheet" href="/stylesheets/application.css" />
     <link rel="stylesheet" href="/stylesheets/{{ assets }}.css" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="/stylesheets/application.css" />
   </head>
   <body>
 
     {{> session}}
 
-
     <div class="pure-g">
       <div id="side_bar" class="pure-u-5-24">
-        <p>DOYA.IO</p>
+        <p><a class="pure-menu-heading title" href="/">DOYA.IO</a></p>
         <ul id="menu">
-          <li><a href="/">Top</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/communities">Communities</a></li>
-          <li><a href="/coffeehouses">CoffeeHouses</a></li>
+          <li class="pure-menu-item"><a href="/about" class="pure-menu-link">About</a></li>
+          <li class="pure-menu-item"><a href="/users" class="pure-menu-link">Users</a></li>
+          <li class="pure-menu-item"><a href="/communities" class="pure-menu-link">Communities</a></li>
+          <li class="pure-menu-item"><a href="/coffeehouses" class="pure-menu-link">CoffeeHouses</a></li>
         </ul>
       </div>
       <div id="main" class="pure-u-19-24">
