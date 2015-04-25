@@ -28,7 +28,7 @@ gulp.task('compile:views', function() {
     var views = path.join(config.srcViews, '**/*.mustache');
 
     return gulp.src(views).on('error', gutil.log)
-        .pipe( gulp.dest(config.destViews) );
+        .pipe(gulp.dest(config.destViews));
 });
 
 gulp.task('compile:copy', function() {
