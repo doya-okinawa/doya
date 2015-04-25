@@ -1,0 +1,28 @@
+{ "username" : "notsunohito_github",
+  "display_name" : "Shuichiro Kamiya",
+  "provider" : "github",
+  "icon_url" : "https://avatars.githubusercontent.com/u/6274872?v=3",
+  "providers" : {
+      "github" : {
+          "avatar_url" :
+          "https://avatars.githubusercontent.com/u/6274872?v=3",
+          "name" : "Shuichiro Kamiya",
+          "login" : "notsunohito",
+          "id" : 6274872
+      }
+  }
+}
+
+{ "username" : "notsunohito_twitter",
+  "display_name" : "のつの人",
+  "provider" : "twitter",
+  "icon_url" : "http://pbs.twimg.com/profile_images/3417523316/0a4396935c3214110d2f3295479a77bb_normal.jpeg",
+  "providers" : {
+      "twitter" : {
+          "profile_image_url" : "http://pbs.twimg.com/profile_images/3417523316/0a4396935c3214110d2f3295479a77bb_normal.jpeg",
+          "screen_name" : "notsunohito",
+          "name" : "のつの人",
+          "id" : 100904492
+      }
+  }
+}
