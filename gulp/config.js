@@ -14,4 +14,4 @@ var destPublic = exports.destPublic = path.join(dest, 'public');
 var destApp    = exports.destApp    = path.join(dest, 'app');
 var destViews  = exports.destViews  = path.join(destApp, 'views');
 
-var seeds = exports.seeds = path.join(src, 'config/mongodb/data/seeds/users.json');
+var seeds = exports.seeds = path.join(src, 'config/mongodb/data/users.json');
