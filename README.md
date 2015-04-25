@@ -25,6 +25,10 @@ $`brew install mongodb`
 
 ## Development
 
+#### Compile src/ and Run [BrowserSync](http://www.browsersync.io/)
+
+$`gulp`
+
 #### Starting server with nodemon on localhost:3000
 
 $`gulp s`
@@ -32,10 +36,6 @@ $`gulp s`
 #### Populating initial data
 
 $`gulp db:reseed`
-
-#### Compile src/ and Run [BrowserSync](http://www.browsersync.io/)
-
-$`gulp`
 
 #### Debugging
 
