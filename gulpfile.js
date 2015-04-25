@@ -5,5 +5,5 @@ require('require-dir')('gulp/tasks');
 
 
 gulp.task('default', function() {
-    return runSequence(['compile', 'watch']);
+    return runSequence('compile', 'watch');
 });

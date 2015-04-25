@@ -7,12 +7,14 @@ var runSequence = require('run-sequence');
 var config      = require('../config');
 
 
-gulp.task('compile', ['compile:coffee','compile:views', 'compile:copy']);
+gulp.task('compile', function() {
+    return runSequence('compile:clean', 'compile:coffee','compile:views', 'compile:copy');
+});
+
 
 gulp.task('compile:clean', function() {
     del(config.dest);
 });
-
 
 gulp.task('compile:coffee', function() {
     var coffees = path.join(config.src, '**/*.coffee');

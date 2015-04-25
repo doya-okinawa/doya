@@ -9,18 +9,20 @@ gulp.task('watch', ['watch:coffee', 'watch:views', 'watch:copy']);
 gulp.task('watch:coffee', function() {
     var coffees = path.join(config.src, '**/*.coffee');
 
-    gulp.watch(coffees, 'compile:coffee');
+    gulp.watch(coffees, ['compile:coffee']);
 });
 
 gulp.task('watch:views', function() {
     var views = path.join(config.srcViews, '**/*.mustache');
 
-    gulp.watch(views, 'compile:views');
+    gulp.watch(views, ['compile:views']);
 });
 
 gulp.task('watch:copy', function() {
-    var src = path.join(config.src, '**/*');
-    var target = [src, '!**/*.coffee', '!**/*.mustache'];
+    var excludeCoffee = path.join(config.src, '!**/*.coffee');
+    var excludeViews = path.join(config.src, '!**/*.mustache');
+    var any = path.join(config.src, '**/*');
+    var target = [excludeCoffee, excludeViews, any];
 
-    gulp.watch(target, 'compile:copy');
+    gulp.watch(target, ['compile:copy']);
 });
