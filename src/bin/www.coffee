@@ -9,12 +9,6 @@ debug = require('debug')('doya:server')
 http = require('http')
 
 ###*
-# Get port from environment and store in Express.
-###
-
-port = normalizePort(process.env.PORT or '3000')
-
-###*
 # Normalize a port into a number, string, or false.
 ###
 
@@ -28,6 +22,12 @@ normalizePort = (val) ->
     # port number
     return port
   false
+
+###*
+# Get port from environment and store in Express.
+###
+
+port = normalizePort(process.env.PORT or '3000')
 
 ###*
 # Event listener for HTTP server "error" event.
