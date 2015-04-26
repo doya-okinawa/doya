@@ -39,7 +39,7 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: true)
 app.use multer()
 app.use methodOverride((req, res) ->
-  if req.body and typeof req.body == 'object' and '_method' in req.body
+  if req.body and typeof req.body == 'object' and req.body['_method']
     # look in urlencoded POST bodies and delete it
     method = req.body._method
     delete req.body._method
