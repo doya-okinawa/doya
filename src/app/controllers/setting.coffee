@@ -1,11 +1,12 @@
-passport = require('passport')
-needsSession = require('./_shared_functions.js').needsSession
-
-class SettingController
+passport      = require('passport')
+AppController = require('./application')
 
 
-  updateAndRedirect = (redirectTo) ->
-    needsSession (req, res, next) ->
+module.exports =
+class SettingController extends AppController
+
+  @updateAndRedirect: (redirectTo) ->
+    @needsSession( (req, res, next) ->
       exUser = req.auth
       updated = req.body
       exUser.update updated, (err) ->
@@ -15,22 +16,20 @@ class SettingController
 
         req.flash 'notice', 'ユーザを更新しました'
         return res.redirect redirectTo
+    )
 
+  @index: @needsSession((req, res, next) ->
+    res.render 'setting/index', { title: 'Settings', user: req.auth }
+  )
 
-  @index: needsSession((req, res, next) ->
-        res.render 'setting/index', { title: 'Settings', user: req.auth }
-      )
+  @profile: @needsSession((req, res, next) ->
+    res.render 'setting/profile', { title: 'Profile/Setting', user: req.auth }
+  )
 
-  @profile: needsSession((req, res, next) ->
-        res.render 'setting/profile', { title: 'Profile/Setting', user: req.auth }
-      )
+  @updateProfile: @updateAndRedirect('/settings/profile')
 
-  @updateProfile: updateAndRedirect('/settings/profile')
+  @account: @needsSession((req, res, next) ->
+    res.render 'setting/account', { title: 'Account/Setting', user: req.auth }
+  )
 
-  @account: needsSession((req, res, next) ->
-        res.render 'setting/account', { title: 'Account/Setting', user: req.auth }
-      )
-
-  @updateAccount: updateAndRedirect('/settings/account')
-
-module.exports = SettingController
+  @updateAccount: @updateAndRedirect('/settings/account')

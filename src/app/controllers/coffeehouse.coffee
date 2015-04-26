@@ -1,3 +1,6 @@
-CoffeeHouse = index: (req, res, next) ->
-  res.render 'coffeehouse/index', title: 'CoffeeHouses'
-module.exports = CoffeeHouse
+AppController = require('./application')
+
+module.exports =
+class CoffeeHouseController extends AppController
+  @index: (req, res, next) ->
+    res.render 'coffeehouse/index', title: 'CoffeeHouses'

@@ -1,10 +1,6 @@
 # DOYA.IO
 
-- DOYA-OKINAWA公式サイト
-
-## Contribution
-
-- [GitHub Flow](http://qiita.com/tbpgr/items/4ff76ef35c4ff0ec8314)
+- DOYA-OKINAWA公式サイトになる予定のもの
 
 ## Requirements
 
@@ -31,7 +27,7 @@ $`gulp`
 
 #### Starting server with nodemon on localhost:3000
 
-$`gulp s`
+$`npm start`
 
 #### Populating initial data
 

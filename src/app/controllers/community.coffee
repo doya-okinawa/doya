@@ -1,3 +1,7 @@
-Community = index: (req, res, next) ->
-  res.render 'community/index', title: 'Communities'
-module.exports = Community
+AppController = require('./application')
+
+
+module.exports =
+class CommunityController extends AppController
+  @index: (req, res, next) ->
+    res.render 'community/index', title: 'Communities'
