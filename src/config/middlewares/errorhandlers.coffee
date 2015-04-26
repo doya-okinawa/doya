@@ -4,7 +4,6 @@ module.exports = (app) ->
     err = new Error('Not Found')
     err.status = 404
     next err
-    return
 
   ### error handlers ###
 
@@ -31,4 +30,3 @@ module.exports = (app) ->
     res.render 'error/error',
       message: err.message
       error: {}
-  return

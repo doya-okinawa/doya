@@ -29,7 +29,6 @@ module.exports = (req, res, next) ->
       # Viewのlayouts
       locals.partials = partials
     render.call res, view, locals, cb
-    return
 
   next()
-  return
+

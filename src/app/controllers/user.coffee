@@ -1,9 +1,13 @@
-_ = require('lodash')
-mongoose = require('mongoose')
-User = mongoose.model('User')
-needsSession = require('./_shared_functions.js').needsSession
-UserController = 
-  preload: (req, res, next, username) ->
+_             = require('lodash')
+mongoose      = require('mongoose')
+AppController = require('./application')
+User          = mongoose.model('User')
+
+
+module.exports =
+class UserController extends AppController
+
+  @preload: (req, res, next, username) ->
     User.findOne { username: username }, (err, user) ->
       if err
         return next(err)
@@ -11,29 +15,31 @@ UserController =
         userNotFound = new Error('Not Found')
         userNotFound.status = 404
         return next(userNotFound)
+
       req.user = user
       next()
-    return
-  index: (req, res, next) ->
+
+  @index: (req, res, next) ->
     User.find {}, (err, users) ->
       if err
         throw new Error
       res.render 'user/index',
         title: 'Users'
         users: users
-      return
-    return
-  show: (req, res, next) ->
+
+  @show: (req, res, next) ->
     res.render 'user/show',
       title: req.user.display_name
       user: req.user
-  new: (req, res, next) ->
+
+  @new: (req, res, next) ->
     user = JSON.parse(req.flash('newUser'))
     res.render 'user/new',
       title: 'New User'
       user: user
       providers: JSON.stringify(user.providers)
-  create: (req, res, next) ->
+
+  @create: (req, res, next) ->
     rawUser = req.body
     rawUser.providers = JSON.parse(rawUser.providers)
     user = new User(rawUser)
@@ -46,8 +52,8 @@ UserController =
           return next(err)
         req.flash 'notice', 'ログインしました'
         res.redirect '/'
-    return
-  destroy: needsSession((req, res, next) ->
+
+  @destroy: @needsSession((req, res, next) ->
     user = req.user
     authId = req.auth._doc._id.id
     if user._doc._id.id != authId
@@ -59,6 +65,5 @@ UserController =
         return next(err)
       req.flash 'notice', 'ユーザを削除しました'
       res.redirect '/users'
-    return
+
   )
-module.exports = UserController

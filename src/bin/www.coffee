@@ -4,9 +4,9 @@
 # Module dependencies.
 ###
 
-app = require('../app')
+app   = require('../app')
 debug = require('debug')('doya:server')
-http = require('http')
+http  = require('http')
 
 ###*
 # Normalize a port into a number, string, or false.
@@ -47,7 +47,6 @@ onError = (error) ->
       process.exit 1
     else
       throw error
-  return
 
 ###*
 # Event listener for HTTP server "listening" event.
@@ -57,7 +56,6 @@ onListening = ->
   addr = server.address()
   bind = if typeof addr == 'string' then 'pipe ' + addr else 'port ' + addr.port
   debug 'Listening on ' + bind
-  return
 
 app.set 'port', port
 

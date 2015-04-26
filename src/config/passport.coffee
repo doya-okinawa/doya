@@ -1,10 +1,12 @@
-_ = require('lodash')
-mongoose = require('mongoose')
-passport = require('passport')
+_               = require('lodash')
+mongoose        = require('mongoose')
+passport        = require('passport')
 TwitterStrategy = require('passport-twitter').Strategy
-GitHubStrategy = require('passport-github').Strategy
-keys = require('./env/keys')
-User = mongoose.model('User')
+GitHubStrategy  = require('passport-github').Strategy
+keys            = require('./env/keys')
+User            = mongoose.model('User')
+
+
 passport.serializeUser (user, done) ->
   done null, _id: user._id
   return

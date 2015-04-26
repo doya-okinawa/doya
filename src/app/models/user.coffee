@@ -1,5 +1,7 @@
 mongoose = require('mongoose')
-Schema = mongoose.Schema
+Schema   = mongoose.Schema
+
+
 UserSchema = new Schema({
   username:
     type: String
@@ -22,5 +24,6 @@ UserSchema = new Schema({
     type: Date
     default: Date.now
 }, strict: false)
+
 
 mongoose.model 'User', UserSchema
