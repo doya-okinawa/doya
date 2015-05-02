@@ -4,7 +4,7 @@ Schema   = mongoose.Schema
 module.exports =
 class Base
 
-  @initialize: ->
+  @register: ->
     schema = new Schema(@schema, @options)
     schema.statics = @statics
     schema.methods = @methods

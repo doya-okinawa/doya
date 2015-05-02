@@ -4,12 +4,12 @@ UserSchema = require('./schema/user')
 
 class User extends UserSchema
 
-  @statics:
-    findOneQ: (criteria) ->
-      this.findOne(criteria).exec()
+  # @statics:
+    # staticExample: (criteria) ->
+    #   this.findOne(criteria).exec()
 
-  @methods:
-    instanchTest: ->
-      Promise.resolve('test')
+  # @methods:
+    # instanceExapmle: ->
+    #   this.save().exec()
 
-module.exports = User.initialize()
+module.exports = User.register()

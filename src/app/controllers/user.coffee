@@ -8,10 +8,11 @@ module.exports =
 class UserController extends AppController
 
   @preload: (req, res, next, username) ->
-      User.findOneQ username: username
+      User.findOne username: username
+        .exec()
         .then (user)->
           if not user
-            notFound = next new Error 'Not Found'
+            notFound = new Error 'Not Found'
             notFound.status = 404
             return notFound
           if user.errors
@@ -20,12 +21,14 @@ class UserController extends AppController
           next()
 
   @index: (req, res, next) ->
-    User.find {}, (err, users) ->
-      if err
-        throw new Error
-      res.render 'user/index',
-        title: 'Users'
-        users: users
+    User.find()
+      .exec()
+      .then (users)->
+        if users.errors
+          throw new Error errors
+        res.render 'user/index',
+          title: 'Users'
+          users: users
 
   @show: (req, res, next) ->
     res.render 'user/show',
