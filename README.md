@@ -21,7 +21,7 @@ $`brew install mongodb`
 
 ## Development
 
-#### Compile src/
+#### Compile/Watch src
 
 $`gulp`
 
