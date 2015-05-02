@@ -21,7 +21,7 @@ $`brew install mongodb`
 
 ## Development
 
-#### Compile src/ and Run [BrowserSync](http://www.browsersync.io/)
+#### Compile src/
 
 $`gulp`
 
@@ -32,6 +32,10 @@ $`npm start`
 #### Populating initial data
 
 $`gulp db:reseed`
+
+####  Stating [BrowserSync](http://www.browsersync.io/)
+
+$`gulp bsync`
 
 #### Debugging
 
