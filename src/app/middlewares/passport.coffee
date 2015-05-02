@@ -3,7 +3,7 @@ mongoose        = require('mongoose')
 passport        = require('passport')
 TwitterStrategy = require('passport-twitter').Strategy
 GitHubStrategy  = require('passport-github').Strategy
-keys            = require('./env/keys')
+keys            = require('../../config/env/keys') # TODO:環境変数から取得
 User            = mongoose.model('User')
 
 

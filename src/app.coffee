@@ -12,7 +12,7 @@ methodOverride   = require('method-override')
 passport         = require('passport')
 mongoose         = require('mongoose')
 MongoStore       = require('connect-mongo')(session)
-connectionString = require('./config/mongodb/connectionstring.js')
+connectionString = require('./config/db/connectionstring.js')
 consolidate      = require('consolidate')
 app              = express()
 
@@ -60,9 +60,9 @@ app.use express.static(path.join(__dirname, 'public'))
 app.engine 'mustache', consolidate.hogan
 app.set 'view engine', 'mustache'
 app.set 'views', path.join(__dirname, 'app/views')
-require './config/passport'
-require('./config/routes') app
-require('./config/middlewares/errorhandlers') app
+require './app/middlewares/passport'
+require('./app/routers/routes') app
+require('./app/middlewares/errorhandlers') app
 
 
 module.exports = app
