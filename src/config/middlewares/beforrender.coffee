@@ -31,4 +31,3 @@ module.exports = (req, res, next) ->
     render.call res, view, locals, cb
 
   next()
-

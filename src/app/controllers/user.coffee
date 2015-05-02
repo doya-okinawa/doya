@@ -1,31 +1,34 @@
 _             = require('lodash')
 mongoose      = require('mongoose')
 AppController = require('./application')
-User          = mongoose.model('User')
+User          = require('../models/user')
 
 
 module.exports =
 class UserController extends AppController
 
   @preload: (req, res, next, username) ->
-    User.findOne { username: username }, (err, user) ->
-      if err
-        return next(err)
-      if user == null
-        userNotFound = new Error('Not Found')
-        userNotFound.status = 404
-        return next(userNotFound)
-
-      req.user = user
-      next()
+      User.findOne username: username
+        .exec()
+        .then (user)->
+          if not user
+            notFound = new Error 'Not Found'
+            notFound.status = 404
+            return notFound
+          if user.errors
+            return next user.errors
+          req.user = user
+          next()
 
   @index: (req, res, next) ->
-    User.find {}, (err, users) ->
-      if err
-        throw new Error
-      res.render 'user/index',
-        title: 'Users'
-        users: users
+    User.find()
+      .exec()
+      .then (users)->
+        if users.errors
+          throw new Error errors
+        res.render 'user/index',
+          title: 'Users'
+          users: users
 
   @show: (req, res, next) ->
     res.render 'user/show',

@@ -1,29 +1,15 @@
-mongoose = require('mongoose')
-Schema   = mongoose.Schema
+Promise    = require('bluebird')
+UserSchema = require('./schema/user')
 
 
-UserSchema = new Schema({
-  username:
-    type: String
-    index: unique: true
-  display_name: type: String
-  icon_url: type: String
-  provider:
-    type: String
-    enum: [
-      'twitter'
-      'github'
-    ]
-  providers:
-    twitter: {}
-    github: {}
-  created_at:
-    type: Date
-    default: Date.now
-  updated_at:
-    type: Date
-    default: Date.now
-}, strict: false)
+class User extends UserSchema
 
+  # @statics:
+    # staticExample: (criteria) ->
+    #   this.findOne(criteria).exec()
 
-mongoose.model 'User', UserSchema
+  # @methods:
+    # instanceExapmle: ->
+    #   this.save().exec()
+
+module.exports = User.register()

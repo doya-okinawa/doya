@@ -50,4 +50,3 @@ module.exports = (app) ->
   app.post '/users',       user.create
   app.delete '/:username', user.destroy
   app.param 'username',    user.preload
-
