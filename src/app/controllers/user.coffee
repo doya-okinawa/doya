@@ -1,5 +1,5 @@
+Promise    = require 'bluebird'
 _          = require 'lodash'
-mongoose   = require 'mongoose'
 Controller = require './controller'
 User       = require '../models/user'
 
@@ -7,54 +7,29 @@ User       = require '../models/user'
 module.exports =
 class UserController extends Controller
 
-  @preload: (req, res, next, username) ->
-      User.findOne username: username
-        .exec()
-        .then (user)->
-          if not user
-            notFound = new Error 'Not Found'
-            notFound.status = 404
-            return notFound
-          if user.errors
-            return next user.errors
-          req.user = user
-          next()
+  @preload: (username) ->
+    User.findOne username: username
+      .exec()
 
-  @index: (req, res, next) ->
+  @index: () ->
     User.find()
       .exec()
-      .then (users)->
-        if users.errors
-          throw new Error errors
-        res.render 'user/index',
-          title: 'Users'
-          users: users
 
-  @show: (req, res, next) ->
-    res.render 'user/show',
-      title: req.user.display_name
-      user: req.user
+  @show: () ->
+    Promise.resolve {}
 
-  @new: (req, res, next) ->
-    user = JSON.parse(req.flash('newUser'))
-    res.render 'user/new',
-      title: 'New User'
-      user: user
-      providers: JSON.stringify(user.providers)
+  @new: (userJson) ->
+    user = JSON.parse userJson
+    Promise.resolve user
 
-  @create: (req, res, next) ->
-    rawUser = req.body
-    rawUser.providers = JSON.parse(rawUser.providers)
-    user = new User(rawUser)
-    user.save (err) ->
-      if err
-        err.status = 400
-        return next(err)
-      req.login user, (err) ->
+  @create: (rawUser) ->
+    new Promise (resolve, reject) ->
+      rawUser.providers = JSON.parse(rawUser.providers)
+      newUser = new User(rawUser)
+      newUser.save (err, item, numberAffected) ->
         if err
-          return next(err)
-        req.flash 'notice', 'ログインしました'
-        res.redirect '/'
+          reject err
+        resolve item, numberAffected
 
   @destroy: @needsSession((req, res, next) ->
     user = req.user

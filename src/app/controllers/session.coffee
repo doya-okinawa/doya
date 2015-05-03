@@ -1,3 +1,4 @@
+Promise    = require 'bluebird'
 passport   = require 'passport'
 Controller = require './controller'
 
@@ -5,10 +6,8 @@ Controller = require './controller'
 module.exports =
 class SessionController extends Controller
 
-  @login: (req, res, next) ->
-    res.render 'session/login', title: 'Login'
+  @login: () ->
+    Promise.resolve {}
 
-  @logout: (req, res, next) ->
-    req.logout()
-    req.flash 'notice', 'ログアウトしました'
-    res.redirect '/'
+  @logout: () ->
+    Promise.resolve {}
