@@ -15,16 +15,28 @@ module.exports = (app) ->
 
   #* Routes */
   # Root
-  app.get '/', welcome.index
+  app.get '/', (req, res) ->
+    welcome.index()
+      .then (result) ->
+        res.render 'welcome/index', title: 'Express'
 
   # About
-  app.get '/about', about.index
+  app.get '/about', (req, res) ->
+    about.index()
+      .then (result) ->
+        res.render 'about/index', title: 'About'
 
   # Community
-  app.get '/communities', community.index
+  app.get '/communities', (req, res) ->
+    community.index()
+      .then (result) ->
+        res.render 'community/index', title: 'Communities'
 
   # CoffeHouse
-  app.get '/coffeehouses', coffeehouse.index
+  app.get '/coffeehouses', (req, res) ->
+    coffeehouse.index()
+      .then (result) ->
+        res.render 'coffeehouse/index', title: 'CoffeeHouses'
 
   # Session
   app.get '/login',  session.login

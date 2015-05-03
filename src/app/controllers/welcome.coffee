@@ -1,7 +1,8 @@
-AppController = require('./application')
+Promise    = require 'bluebird'
+Controller = require './controller'
 
 
 module.exports =
-class WelComeController extends AppController
-    @index: (req, res, next) ->
-      res.render 'welcome/index', title: 'Express'
+class WelComeController extends Controller
+  @index: () ->
+    Promise.resolve {}

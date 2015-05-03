@@ -1,11 +1,11 @@
-passport      = require('passport')
-mongoose      = require('mongoose')
-AppController = require('./application')
-User          = mongoose.model('User')
+passport   = require 'passport'
+mongoose   = require 'mongoose'
+Controller = require './controller'
+User       = require '../models/user'
 
 
 module.exports =
-class Auth extends AppController
+class Auth extends Controller
 
   @twitter: passport.authenticate('twitter')
 

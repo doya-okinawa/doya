@@ -1,5 +1,5 @@
 module.exports =
-class AppController
+class Controller
     @needsSession: (callback) ->
         (req, res, next) ->
             if req.isAuthenticated()

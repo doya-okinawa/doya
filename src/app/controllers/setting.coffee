@@ -1,9 +1,9 @@
-passport      = require('passport')
-AppController = require('./application')
+passport      = require 'passport'
+Controller = require './controller'
 
 
 module.exports =
-class SettingController extends AppController
+class SettingController extends Controller
 
   @updateAndRedirect: (redirectTo) ->
     @needsSession( (req, res, next) ->

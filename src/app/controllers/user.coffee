@@ -1,11 +1,11 @@
-_             = require('lodash')
-mongoose      = require('mongoose')
-AppController = require('./application')
-User          = require('../models/user')
+_          = require 'lodash'
+mongoose   = require 'mongoose'
+Controller = require './controller'
+User       = require '../models/user'
 
 
 module.exports =
-class UserController extends AppController
+class UserController extends Controller
 
   @preload: (req, res, next, username) ->
       User.findOne username: username

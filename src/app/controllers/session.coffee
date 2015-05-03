@@ -1,9 +1,9 @@
-passport = require('passport')
-AppController = require('./application')
+passport   = require 'passport'
+Controller = require './controller'
 
 
 module.exports =
-class SessionController extends AppController
+class SessionController extends Controller
 
   @login: (req, res, next) ->
     res.render 'session/login', title: 'Login'
