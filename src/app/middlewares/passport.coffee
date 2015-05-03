@@ -1,20 +1,18 @@
-_               = require('lodash')
-mongoose        = require('mongoose')
-passport        = require('passport')
+_               = require 'lodash'
+mongoose        = require 'mongoose'
+passport        = require 'passport'
 TwitterStrategy = require('passport-twitter').Strategy
 GitHubStrategy  = require('passport-github').Strategy
-keys            = require('../../config/env/keys') # TODO:環境変数から取得
-User            = mongoose.model('User')
+keys            = require '../../config/env/keys' # TODO:環境変数から取得
+User            = require '../models/user'
 
 
 passport.serializeUser (user, done) ->
   done null, _id: user._id
-  return
+
 passport.deserializeUser (serializedUser, done) ->
   User.findById serializedUser._id, (err, user) ->
     done err, user
-    return
-  return
 
 ### Twitter ###
 

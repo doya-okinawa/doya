@@ -1,5 +1,5 @@
-Promise    = require('bluebird')
-UserSchema = require('./schema/user')
+Promise    = require 'bluebird'
+UserSchema = require './schema/user'
 
 
 class User extends UserSchema

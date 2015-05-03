@@ -1,12 +1,12 @@
-beforRender = require('../middlewares/beforrender')
-welcome     = require('../controllers/welcome')
-about       = require('../controllers/about')
-community   = require('../controllers/community')
-coffeehouse = require('../controllers/coffeehouse')
-session     = require('../controllers/session')
-auth        = require('../controllers/auth')
-setting     = require('../controllers/setting')
-user        = require('../controllers/user')
+beforRender = require '../middlewares/beforrender'
+welcome     = require '../controllers/welcome'
+about       = require '../controllers/about'
+community   = require '../controllers/community'
+coffeehouse = require '../controllers/coffeehouse'
+session     = require '../controllers/session'
+auth        = require '../controllers/auth'
+setting     = require '../controllers/setting'
+user        = require '../controllers/user'
 
 
 module.exports = (app) ->

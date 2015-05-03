@@ -1,4 +1,4 @@
-Base = require('./base')
+Base = require './base'
 
 module.exports =
 class UserSchema extends Base

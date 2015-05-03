@@ -9,12 +9,12 @@ module.exports = (app) ->
 
   # development error handler
   # will print stacktrace
-  if app.get('env') == 'development'
+  if app.get 'env' == 'development'
     app.use (err, req, res, next) ->
       if err.code == 11000
         # TODO: 別のusernameできるようにする
         req.flash 'notice', 'すでに登録されているusernameです'
-        return res.redirect('/')
+        return res.redirect '/'
       res.status err.status or 500
       res.render 'error/error',
         message: err.message
@@ -25,7 +25,7 @@ module.exports = (app) ->
     if err.code == 11000
       # TODO: 別のusernameできるようにする
       req.flash 'notice', 'すでに登録されているusernameです'
-      return res.redirect('/')
+      return res.redirect '/'
     res.status err.status or 500
     res.render 'error/error',
       message: err.message
